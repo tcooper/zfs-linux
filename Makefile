@@ -5,7 +5,7 @@
 # 
 # 				Rocks(r)
 # 		         www.rocksclusters.org
-# 		         version 6.2 (SideWindwer)
+# 		         version 6.2 (SideWinder)
 # 		         version 7.0 (Manzanita)
 # 
 # Copyright (c) 2000 - 2017 The Regents of the University of California.
@@ -77,6 +77,7 @@
 -include $(ROLLSROOT)/etc/Rolls.mk
 include Rolls.mk
 include zfs-version.mk
+UNAME=$(shell uname -r)
 
 
 default: roll
@@ -85,7 +86,7 @@ preroll::
 	for i in `ls nodes/*.xml.in`; do \
 	    export o=`echo $$i | sed 's/\.in//'`; \
 	    cp $$i $$o; \
-	    sed -i "s/SPL_VERSION/$(SPL_VERSION)/g; s/RELEASE/$(RELEASE)/g" $$o; \
+	    sed -i "s/SPL_VERSION/$(SPL_VERSION)/g; s/RELEASE/$(RELEASE)/g; s/UNAME/$(UNAME)/g" $$o; \
 	done
 
 bootstrap:
